@@ -69,7 +69,7 @@ def matchRules(allowedCharsGroups):
 	(nmbrCount >= nmbrRuleCount or nmbrCheck) and \
 	(symbCount == symbRuleCount or symbCheck)
 
-def getSet(group):
+def getCharSet(group):
 	idx = randint(0,len(group)-1)
 	return group[idx:idx+1]
 
@@ -103,15 +103,15 @@ def genratePass(lenPass, allowedCharsGroups):
 			# select a group of characters
 			idGroup = selectCharGroup(allowedCharsGroups, idSYMB)
 			if idGroup == idMAYS:
-				newPass = newPass + getSet(MAYS)
+				newPass = newPass + getCharSet(MAYS)
 				maysCount += 1
 				hasMAYS = True
 			elif idGroup == idMINS:
-				newPass = newPass + getSet(MINS)
+				newPass = newPass + getCharSet(MINS)
 				minsCount += 1
 				hasMINS = True
 			elif idGroup == idNMBR:
-				newPass = newPass + getSet(NMBR)
+				newPass = newPass + getCharSet(NMBR)
 				nmbrCount += 1
 				hasNMBR = True
 			elif idGroup == idSYMB:
@@ -120,19 +120,19 @@ def genratePass(lenPass, allowedCharsGroups):
 				if (symbCount > symbRuleCount) and not onlySYMB(allowedCharsGroups):
 					idGroup = selectCharGroup(allowedCharsGroups, idNMBR)
 					if idGroup == idMAYS:
-						newPass = newPass + getSet(MAYS)
+						newPass = newPass + getCharSet(MAYS)
 						maysCount += 1
 						hasMAYS = True
 					elif idGroup == idMINS:
-						newPass = newPass + getSet(MINS)
+						newPass = newPass + getCharSet(MINS)
 						minsCount += 1
 						hasMINS = True
 					elif idGroup == idNMBR:
-						newPass = newPass + getSet(NMBR)
+						newPass = newPass + getCharSet(NMBR)
 						nmbrCount += 1
 						hasNMBR = True
 				else:
-					newPass = newPass + getSet(SYMB)
+					newPass = newPass + getCharSet(SYMB)
 
 		passCreated = hasMAYS and hasMINS and hasNMBR and hasSYMB
 	return newPass
