@@ -28,7 +28,7 @@ PROGRAM = basename(__file__)
 VERSION = "1.0.0 (2023_0218_2359)"
 UPDATED = "2023/02/18"
 CREATED = "2023/02/18"
-AUTHOR = "Jose Luis Núñez Crespi!"
+AUTHOR = "Jose Luis Núñez Crespi"
 LICENSE = "GNU General Public License v3.0"
 EMAIL = "jlncpub@selenitas.es"
 
