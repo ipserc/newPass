@@ -17,7 +17,7 @@ idFirst = 1
 idMAYS = 1
 idMINS = 2
 idNMBR = 3
-idSYMB = 4
+idSYMB = 4	# MUST BE THE LAST
 idLast = 4
 
 maysCount = 0
@@ -83,9 +83,7 @@ def genratePass(lenPass, allowedCharsGroups):
 
 	seed()
 	
-	symbCount = 0
 	passCreated = False
-	
 	while not passCreated:
 		newPass = ""
 		hasMAYS = not idMAYS in allowedCharsGroups 
