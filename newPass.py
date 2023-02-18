@@ -147,7 +147,8 @@ if __name__ == "__main__":
 	# Allowed Chars Set
 	allowedCharsGroups = {idMAYS, idMINS, idNMBR, idSYMB}
 	
-	# Pass Conditions
+	# Rules as the minmum number of characters of a set in the password
+	# for SYMB set this number is exact, if there is another set is available
 	maysRuleCount = 3
 	minsRuleCount = 3
 	nmbrRuleCount = 3
