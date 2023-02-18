@@ -8,11 +8,13 @@ from random import randint, seed, sample, shuffle
 from math import factorial
 from itertools import permutations
 
+# The sets of characters
 MAYS = "QWERTYUIOPASDFGHJKLZXCVBNM"
 MINS = "mnbvcxzpoiuytrewqlkjhgfdsa"
 SYMB = "@!#€$%&/(){}=+-*[]"
 NMBR = "1357902468"
 
+# The Ids of the sets of characters
 idFirst = 1
 idMAYS = 1
 idMINS = 2
@@ -20,11 +22,13 @@ idNMBR = 3
 idSYMB = 4	# MUST BE THE LAST
 idLast = 4
 
+# Counters to track the amount of characters used
 maysCount = 0
 minsCount = 0
 nmbrCount = 0
 symbCount = 0
 
+# Rules with the minimum nomber of a set of characters to use for the password 
 maysRuleCount = 0
 minsRuleCount = 0
 nmbrRuleCount = 0
@@ -136,7 +140,6 @@ def genratePass(lenPass, allowedCharsGroups):
 # Programa principal
 # #################################################
 if __name__ == "__main__":
-	
 	# Password Length
 	lenPass = 16
 	
@@ -148,6 +151,12 @@ if __name__ == "__main__":
 	minsRuleCount = 3
 	nmbrRuleCount = 3
 	symbRuleCount = 2
+	
+	# Shuffle the sets of characters
+	MAYS = ''.join(sample(MAYS,len(MAYS)))
+	MINS = ''.join(sample(MINS,len(MINS)))
+	NMBR = ''.join(sample(NMBR,len(NMBR)))
+	SYMB = ''.join(sample(SYMB,len(SYMB)))
 	
 	iteration = 0
 	while not matchConditions(allowedCharsGroups):
