@@ -138,7 +138,7 @@ def genratePass(lenPass, allowedCharsGroups):
 if __name__ == "__main__":
 	
 	# Password Length
-	lenPass = 4
+	lenPass = 16
 	
 	# Allowed Chars Set
 	allowedCharsGroups = {idMAYS, idMINS, idNMBR, idSYMB}
@@ -160,4 +160,4 @@ if __name__ == "__main__":
 	print("> > > > > > This is your 1st new password: " + newPass)
 	print("> > > > > > This is your 2nd new password: " + ''.join(sample(newPass,len(newPass))))
 
-	printPermuteList(newPass)
+	# ---- printPermuteList(newPass)
