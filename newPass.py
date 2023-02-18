@@ -157,7 +157,7 @@ if __name__ == "__main__":
 			break
 	
 	print("Password generated in " + str(iteration) + " iterations")
-	print("> > > > > > This is your new password: " + newPass)
-	print("> > > > > > This is your new password: " + ''.join(sample(newPass,len(newPass))))
+	print("> > > > > > This is your 1st new password: " + newPass)
+	print("> > > > > > This is your 2nd new password: " + ''.join(sample(newPass,len(newPass))))
 
 	printPermuteList(newPass)
