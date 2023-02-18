@@ -60,30 +60,30 @@ def resetCounters():
 	nmbrCount = 0
 	symbCount = 0
 	
-def matchRules(allowedCharsGroups):
-	maysCheck = not idMAYS in allowedCharsGroups
-	minsCheck = not idMINS in allowedCharsGroups
-	nmbrCheck = not idNMBR in allowedCharsGroups
-	symbCheck = not idSYMB in allowedCharsGroups
+def matchRules(allowedCharsSets):
+	maysCheck = not idMAYS in allowedCharsSets
+	minsCheck = not idMINS in allowedCharsSets
+	nmbrCheck = not idNMBR in allowedCharsSets
+	symbCheck = not idSYMB in allowedCharsSets
 	return (maysCount >= maysRuleCount or maysCheck) and \
 	(minsCount >= minsRuleCount or minsCheck) and \
 	(nmbrCount >= nmbrRuleCount or nmbrCheck) and \
 	(symbCount == symbRuleCount or symbCheck)
 
-def getCharSet(group):
-	idx = randint(0,len(group)-1)
-	return group[idx:idx+1]
+def getCharSet(Set):
+	idx = randint(0,len(Set)-1)
+	return Set[idx:idx+1]
 
-def selectCharGroup(allowedCharsGroups, idLAST):
-	idGroup = idNOSET
-	while not (idGroup in allowedCharsGroups):
-		idGroup = randint(idFIRST, idLAST)
-	return idGroup
+def selectCharSet(allowedCharsSets, idLAST):
+	idSet = idNOSET
+	while not (idSet in allowedCharsSets):
+		idSet = randint(idFIRST, idLAST)
+	return idSet
 
-def onlySYMB(allowedCharsGroups):
-	return allowedCharsGroups == {idSYMB}
+def onlySYMB(allowedCharsSets):
+	return allowedCharsSets == {idSYMB}
 	
-def genratePass(lenPass, allowedCharsGroups):
+def genratePass(lenPass, allowedCharsSets):
 	global maysCount
 	global minsCount
 	global nmbrCount
@@ -94,41 +94,41 @@ def genratePass(lenPass, allowedCharsGroups):
 	passCreated = False
 	while not passCreated:
 		newPass = ""
-		hasMAYS = not idMAYS in allowedCharsGroups 
-		hasMINS = not idMINS in allowedCharsGroups
-		hasNMBR = not idNMBR in allowedCharsGroups 
-		hasSYMB = not idSYMB in allowedCharsGroups
+		hasMAYS = not idMAYS in allowedCharsSets 
+		hasMINS = not idMINS in allowedCharsSets
+		hasNMBR = not idNMBR in allowedCharsSets 
+		hasSYMB = not idSYMB in allowedCharsSets
 		resetCounters()
 
 		for iter in range(0, lenPass):
-			# select a group of characters
-			idGroup = selectCharGroup(allowedCharsGroups, idSYMB)
-			if idGroup == idMAYS:
+			# select a Set of characters
+			idSet = selectCharSet(allowedCharsSets, idSYMB)
+			if idSet == idMAYS:
 				newPass = newPass + getCharSet(MAYS)
 				maysCount += 1
 				hasMAYS = True
-			elif idGroup == idMINS:
+			elif idSet == idMINS:
 				newPass = newPass + getCharSet(MINS)
 				minsCount += 1
 				hasMINS = True
-			elif idGroup == idNMBR:
+			elif idSet == idNMBR:
 				newPass = newPass + getCharSet(NMBR)
 				nmbrCount += 1
 				hasNMBR = True
-			elif idGroup == idSYMB:
+			elif idSet == idSYMB:
 				hasSYMB = True
 				symbCount += 1
-				if (symbCount > symbRuleCount) and not onlySYMB(allowedCharsGroups):
-					idGroup = selectCharGroup(allowedCharsGroups, idNMBR)
-					if idGroup == idMAYS:
+				if (symbCount > symbRuleCount) and not onlySYMB(allowedCharsSets):
+					idSet = selectCharSet(allowedCharsSets, idNMBR)
+					if idSet == idMAYS:
 						newPass = newPass + getCharSet(MAYS)
 						maysCount += 1
 						hasMAYS = True
-					elif idGroup == idMINS:
+					elif idSet == idMINS:
 						newPass = newPass + getCharSet(MINS)
 						minsCount += 1
 						hasMINS = True
-					elif idGroup == idNMBR:
+					elif idSet == idNMBR:
 						newPass = newPass + getCharSet(NMBR)
 						nmbrCount += 1
 						hasNMBR = True
@@ -146,7 +146,7 @@ if __name__ == "__main__":
 	lenPass = 16
 	
 	# Allowed Chars Set
-	allowedCharsGroups = {idMAYS, idMINS, idNMBR, idSYMB}
+	allowedCharsSets = {idMAYS, idMINS, idNMBR, idSYMB}
 	
 	# Rules as the minmum number of characters of a set in the password
 	# for SYMB set this number is exact, if there is another set is available
@@ -162,9 +162,9 @@ if __name__ == "__main__":
 	SYMB = shuffle(SYMB)
 	
 	iteration = 0
-	while not matchRules(allowedCharsGroups):
+	while not matchRules(allowedCharsSets):
 		iteration += 1 
-		newPass = genratePass(lenPass, allowedCharsGroups)
+		newPass = genratePass(lenPass, allowedCharsSets)
 		if (iteration > 500):
 			break
 	
