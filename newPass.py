@@ -60,11 +60,11 @@ def resetCounters():
 	nmbrCount = 0
 	symbCount = 0
 	
-def matchRules(allowedCharsSets):
-	maysCheck = not idMAYS in allowedCharsSets
-	minsCheck = not idMINS in allowedCharsSets
-	nmbrCheck = not idNMBR in allowedCharsSets
-	symbCheck = not idSYMB in allowedCharsSets
+def matchRules(allowedCharsSet):
+	maysCheck = not idMAYS in allowedCharsSet
+	minsCheck = not idMINS in allowedCharsSet
+	nmbrCheck = not idNMBR in allowedCharsSet
+	symbCheck = not idSYMB in allowedCharsSet
 	return (maysCount >= maysRuleCount or maysCheck) and \
 	(minsCount >= minsRuleCount or minsCheck) and \
 	(nmbrCount >= nmbrRuleCount or nmbrCheck) and \
@@ -74,16 +74,16 @@ def getCharSet(Set):
 	idx = randint(0,len(Set)-1)
 	return Set[idx:idx+1]
 
-def selectCharSet(allowedCharsSets, idLAST):
+def selectCharSet(allowedCharsSet, idLAST):
 	idSet = idNOSET
-	while not (idSet in allowedCharsSets):
+	while not (idSet in allowedCharsSet):
 		idSet = randint(idFIRST, idLAST)
 	return idSet
 
-def onlySYMB(allowedCharsSets):
-	return allowedCharsSets == {idSYMB}
+def onlySYMB(allowedCharsSet):
+	return allowedCharsSet == {idSYMB}
 	
-def genratePass(lenPass, allowedCharsSets):
+def genratePass(lenPass, allowedCharsSet):
 	global maysCount
 	global minsCount
 	global nmbrCount
@@ -94,15 +94,15 @@ def genratePass(lenPass, allowedCharsSets):
 	passCreated = False
 	while not passCreated:
 		newPass = ""
-		hasMAYS = not idMAYS in allowedCharsSets 
-		hasMINS = not idMINS in allowedCharsSets
-		hasNMBR = not idNMBR in allowedCharsSets 
-		hasSYMB = not idSYMB in allowedCharsSets
+		hasMAYS = not idMAYS in allowedCharsSet 
+		hasMINS = not idMINS in allowedCharsSet
+		hasNMBR = not idNMBR in allowedCharsSet 
+		hasSYMB = not idSYMB in allowedCharsSet
 		resetCounters()
 
 		for iter in range(0, lenPass):
 			# select a Set of characters
-			idSet = selectCharSet(allowedCharsSets, idSYMB)
+			idSet = selectCharSet(allowedCharsSet, idSYMB)
 			if idSet == idMAYS:
 				newPass = newPass + getCharSet(MAYS)
 				maysCount += 1
@@ -118,8 +118,8 @@ def genratePass(lenPass, allowedCharsSets):
 			elif idSet == idSYMB:
 				hasSYMB = True
 				symbCount += 1
-				if (symbCount > symbRuleCount) and not onlySYMB(allowedCharsSets):
-					idSet = selectCharSet(allowedCharsSets, idNMBR)
+				if (symbCount > symbRuleCount) and not onlySYMB(allowedCharsSet):
+					idSet = selectCharSet(allowedCharsSet, idNMBR)
 					if idSet == idMAYS:
 						newPass = newPass + getCharSet(MAYS)
 						maysCount += 1
@@ -146,7 +146,7 @@ if __name__ == "__main__":
 	lenPass = 16
 	
 	# Allowed Chars Set
-	allowedCharsSets = {idMAYS, idMINS, idNMBR, idSYMB}
+	allowedCharsSet = {idMAYS, idMINS, idNMBR, idSYMB}
 	
 	# Rules as the minmum number of characters of a set in the password
 	# for SYMB set this number is exact, if there is another set is available
@@ -162,9 +162,9 @@ if __name__ == "__main__":
 	SYMB = shuffle(SYMB)
 	
 	iteration = 0
-	while not matchRules(allowedCharsSets):
+	while not matchRules(allowedCharsSet):
 		iteration += 1 
-		newPass = genratePass(lenPass, allowedCharsSets)
+		newPass = genratePass(lenPass, allowedCharsSet)
 		if (iteration > 500):
 			break
 	
