@@ -15,12 +15,13 @@ SYMB = "@!#€$%&/(){}=+-*[]·"
 NMBR = "1357902468"
 
 # The Ids of the sets of characters
-idFirst = 1
+idNOSET = 0
+idFIRST = 1
 idMAYS = 1
 idMINS = 2
 idNMBR = 3
 idSYMB = 4	# MUST BE THE LAST
-idLast = 4
+idLAST = 4
 
 # Counters to track the amount of characters used
 maysCount = 0
@@ -73,10 +74,10 @@ def getCharSet(group):
 	idx = randint(0,len(group)-1)
 	return group[idx:idx+1]
 
-def selectCharGroup(allowedCharsGroups, idLast):
-	idGroup = -1
+def selectCharGroup(allowedCharsGroups, idLAST):
+	idGroup = idNOSET
 	while not (idGroup in allowedCharsGroups):
-		idGroup = randint(idFirst, idLast)
+		idGroup = randint(idFIRST, idLAST)
 	return idGroup
 
 def onlySYMB(allowedCharsGroups):
