@@ -13,10 +13,12 @@ MINS = "mnbvcxzpoiuytrewqlkjhgfdsa"
 SYMB = "@!#€$%&/(){}=+-*[]"
 NMBR = "1357902468"
 
+idFirst = 1
 idMAYS = 1
 idMINS = 2
 idNMBR = 3
 idSYMB = 4
+idLast = 4
 
 maysCount = 0
 minsCount = 0
@@ -50,40 +52,52 @@ def resetCounters():
 	nmbrCount = 0
 	symbCount = 0
 	
-def matchConditions():
-	return maysCount >= maysRuleCount and \
-	minsCount >= minsRuleCount and \
-	nmbrCount >= nmbrRuleCount and \
-	symbCount == symbRuleCount
+def matchConditions(allowedCharsGroups):
+	maysCheck = not idMAYS in allowedCharsGroups
+	minsCheck = not idMINS in allowedCharsGroups
+	nmbrCheck = not idNMBR in allowedCharsGroups
+	symbCheck = not idSYMB in allowedCharsGroups
+	return (maysCount >= maysRuleCount or maysCheck) and \
+	(minsCount >= minsRuleCount or minsCheck) and \
+	(nmbrCount >= nmbrRuleCount or nmbrCheck) and \
+	(symbCount == symbRuleCount or symbCheck)
 
 def getSet(group):
 	idx = randint(0,len(group)-1)
-	# print("idx:"+str(idx))
 	return group[idx:idx+1]
 
-def genratePass(lenPass):
+def selectCharGroup(allowedCharsGroups, idLast):
+	idGroup = -1
+	while not (idGroup in allowedCharsGroups):
+		idGroup = randint(idFirst, idLast)
+	return idGroup
+
+def onlySYMB(allowedCharsGroups):
+	return allowedCharsGroups == {idSYMB}
+	
+def genratePass(lenPass, allowedCharsGroups):
 	global maysCount
 	global minsCount
 	global nmbrCount
 	global symbCount
 
-	resetCounters()
-
 	seed()
-	
-	hasMAYS = False 
-	hasMINS = False
-	hasNMBR = False 
-	hasSYMB = False
 	
 	symbCount = 0
 	passCreated = False
 	
 	while not passCreated:
 		newPass = ""
+		hasMAYS = not idMAYS in allowedCharsGroups 
+		hasMINS = not idMINS in allowedCharsGroups
+		hasNMBR = not idNMBR in allowedCharsGroups 
+		hasSYMB = not idSYMB in allowedCharsGroups
+		resetCounters()
+
 		for iter in range(0, lenPass):
 			# select a group of characters
-			idGroup =  randint(idMAYS, idSYMB)
+			#idGroup = randint(idMAYS, idSYMB)
+			idGroup = selectCharGroup(allowedCharsGroups, idSYMB)
 			if idGroup == idMAYS:
 				newPass = newPass + getSet(MAYS)
 				maysCount += 1
@@ -99,8 +113,9 @@ def genratePass(lenPass):
 			elif idGroup == idSYMB:
 				hasSYMB = True
 				symbCount += 1
-				if symbCount > symbRuleCount:
-					idGroup =  randint(idMAYS, idNMBR)
+				if (symbCount > symbRuleCount) and not onlySYMB(allowedCharsGroups):
+					#idGroup =  randint(idMAYS, idNMBR)
+					idGroup = selectCharGroup(allowedCharsGroups, idNMBR)
 					if idGroup == idMAYS:
 						newPass = newPass + getSet(MAYS)
 						maysCount += 1
@@ -123,7 +138,13 @@ def genratePass(lenPass):
 # Programa principal
 # #################################################
 if __name__ == "__main__":
+	
+	# Password Length
 	lenPass = 16
+	
+	# Allowed Chars Set
+	allowedCharsGroups = {idMAYS, idMINS, idNMBR, idSYMB}
+	
 	# Pass Conditions
 	maysRuleCount = 3
 	minsRuleCount = 3
@@ -131,9 +152,9 @@ if __name__ == "__main__":
 	symbRuleCount = 2
 	
 	iteration = 0
-	while not matchConditions():
+	while not matchConditions(allowedCharsGroups):
 		iteration += 1 
-		newPass = genratePass(lenPass)
+		newPass = genratePass(lenPass, allowedCharsGroups)
 		if (iteration > 500):
 			break
 	
