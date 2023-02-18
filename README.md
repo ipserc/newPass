@@ -1,2 +1,2 @@
 # newPass
-Password generator
+Easy to use and simple fully configurable Password generator
