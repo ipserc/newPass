@@ -1,4 +1,18 @@
 #!/bin/python3
+'''
+    @author:     Jose Luis Núñez
+    
+    @copyright:  ipserc 2023
+    
+    @license:    GNU General Public License v3.0
+    
+    @contact:    jlncpub@selenitas.es
+    
+    @deffield    created: 2023/02/18
+				 updated: 2023/02/18
+    
+    @version:
+   '''
 # #################################################
 # Programa para generar passwords seguras
 # 
@@ -7,6 +21,16 @@
 from random import randint, seed, sample, shuffle
 from math import factorial
 from itertools import permutations
+from os.path import basename
+
+# Program Facts
+PROGRAM = basename(__file__)
+VERSION = "1.0.0 (2023_0218_2359)"
+UPDATED = "2023/02/18"
+CREATED = "2023/02/18"
+AUTHOR = "Jose Luis Núñez Crespi!"
+LICENSE = "GNU General Public License v3.0"
+EMAIL = "jlncpub@selenitas.es"
 
 # The sets of characters
 MAYS = "QWERTYUIOPASDFGHJKLZXCVBNM"
@@ -34,6 +58,16 @@ maysRuleCount = 0
 minsRuleCount = 0
 nmbrRuleCount = 0
 symbRuleCount = 0
+
+def progamFacts():
+	print(	"PROGRAM..: " + PROGRAM + "\n" + \
+			"VERSION..: " + VERSION + "\n" + \
+			"UPDATED..: " + UPDATED + "\n" + \
+			"CREATED..: " + CREATED + "\n" + \
+			"AUTHOR...: " + AUTHOR + "\n" + \
+			"LICENSE..: " + LICENSE + "\n" + \
+			"EMAIL....: " + EMAIL + "\n")
+
 
 def shuffle(string):
 	return ''.join(sample(string,len(string)))
@@ -142,6 +176,7 @@ def genratePass(lenPass, allowedCharsSet):
 # Programa principal
 # #################################################
 if __name__ == "__main__":
+	progamFacts()
 	# Password Length
 	lenPass = 16
 	
