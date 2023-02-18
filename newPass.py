@@ -2,16 +2,16 @@
 '''
     @author:     Jose Luis Núñez
     
-    @copyright:  ipserc 2023
+    @copyright:  Creative Commons CC BY-NC-SA ipserc 2023
     
     @license:    GNU General Public License v3.0
     
     @contact:    jlncpub@selenitas.es
     
     @deffield    created: 2023/02/18
-				 updated: 2023/02/18
+				 updated: See UPDATED at Program Facts
     
-    @version:
+    @version:	See VERSION at Program Facts
    '''
 # #################################################
 # Programa para generar passwords seguras
@@ -31,6 +31,9 @@ CREATED = "2023/02/18"
 AUTHOR = "Jose Luis Núñez Crespi"
 LICENSE = "GNU General Public License v3.0"
 EMAIL = "jlncpub@selenitas.es"
+
+# maximum number of iterations to generate the desired password
+MAXITER = 500 
 
 # The sets of characters
 MAYS = "QWERTYUIOPASDFGHJKLZXCVBNM"
@@ -196,13 +199,18 @@ if __name__ == "__main__":
 	NMBR = shuffle(NMBR)
 	SYMB = shuffle(SYMB)
 	
+	# ready to do the stuff
 	iteration = 0
 	while not matchRules(allowedCharsSet):
 		iteration += 1 
 		newPass = genratePass(lenPass, allowedCharsSet)
-		if (iteration > 500):
+		if (iteration > MAXITER):
 			break
 	
+	# Print results
+	if (iteration > MAXITER):
+		print("WARNING: The password may not comply with all the rules")
+		
 	if (iteration > 1):
 		s = "s"
 	else:
