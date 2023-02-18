@@ -28,7 +28,7 @@ minsCount = 0
 nmbrCount = 0
 symbCount = 0
 
-# Rules with the minimum nomber of a set of characters to use for the password 
+# Rules with the minimum nomber of characters of a set to use for the password 
 maysRuleCount = 0
 minsRuleCount = 0
 nmbrRuleCount = 0
