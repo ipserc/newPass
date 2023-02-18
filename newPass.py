@@ -59,7 +59,7 @@ def resetCounters():
 	nmbrCount = 0
 	symbCount = 0
 	
-def matchConditions(allowedCharsGroups):
+def matchRules(allowedCharsGroups):
 	maysCheck = not idMAYS in allowedCharsGroups
 	minsCheck = not idMINS in allowedCharsGroups
 	nmbrCheck = not idNMBR in allowedCharsGroups
@@ -161,7 +161,7 @@ if __name__ == "__main__":
 	SYMB = shuffle(SYMB)
 	
 	iteration = 0
-	while not matchConditions(allowedCharsGroups):
+	while not matchRules(allowedCharsGroups):
 		iteration += 1 
 		newPass = genratePass(lenPass, allowedCharsGroups)
 		if (iteration > 500):
