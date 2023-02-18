@@ -11,7 +11,7 @@ from itertools import permutations
 # The sets of characters
 MAYS = "QWERTYUIOPASDFGHJKLZXCVBNM"
 MINS = "mnbvcxzpoiuytrewqlkjhgfdsa"
-SYMB = "@!#€$%&/(){}=+-*[]"
+SYMB = "@!#€$%&/(){}=+-*[]·"
 NMBR = "1357902468"
 
 # The Ids of the sets of characters
@@ -98,7 +98,6 @@ def genratePass(lenPass, allowedCharsGroups):
 
 		for iter in range(0, lenPass):
 			# select a group of characters
-			#idGroup = randint(idMAYS, idSYMB)
 			idGroup = selectCharGroup(allowedCharsGroups, idSYMB)
 			if idGroup == idMAYS:
 				newPass = newPass + getSet(MAYS)
@@ -116,7 +115,6 @@ def genratePass(lenPass, allowedCharsGroups):
 				hasSYMB = True
 				symbCount += 1
 				if (symbCount > symbRuleCount) and not onlySYMB(allowedCharsGroups):
-					#idGroup =  randint(idMAYS, idNMBR)
 					idGroup = selectCharGroup(allowedCharsGroups, idNMBR)
 					if idGroup == idMAYS:
 						newPass = newPass + getSet(MAYS)
