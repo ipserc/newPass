@@ -34,6 +34,9 @@ minsRuleCount = 0
 nmbrRuleCount = 0
 symbRuleCount = 0
 
+def shuffle(string):
+	return ''.join(sample(string,len(string)))
+
 def Permute(string):
 	if len(string) > 8:
 		print("Are you sure that you want to do it? It will generate %g permutations" % factorial(len(string)))
@@ -151,10 +154,10 @@ if __name__ == "__main__":
 	symbRuleCount = 2
 	
 	# Shuffle the sets of characters
-	MAYS = ''.join(sample(MAYS,len(MAYS)))
-	MINS = ''.join(sample(MINS,len(MINS)))
-	NMBR = ''.join(sample(NMBR,len(NMBR)))
-	SYMB = ''.join(sample(SYMB,len(SYMB)))
+	MAYS = shuffle(MAYS)
+	MINS = shuffle(MINS)
+	NMBR = shuffle(NMBR)
+	SYMB = shuffle(SYMB)
 	
 	iteration = 0
 	while not matchConditions(allowedCharsGroups):
@@ -165,6 +168,6 @@ if __name__ == "__main__":
 	
 	print("Password generated in " + str(iteration) + " iterations")
 	print("> > > > > > This is your 1st new password: " + newPass)
-	print("> > > > > > This is your 2nd new password: " + ''.join(sample(newPass,len(newPass))))
+	print("> > > > > > This is your 2nd new password: " + shuffle(newPass))
 
 	# ---- printPermuteList(newPass)
