@@ -30,7 +30,7 @@ symbRuleCount = 0
 
 def Permute(string):
 	if len(string) > 8:
-		print("Are you sure that you want to do it. It will generate %g permutations" % factorial(len(string)))
+		print("Are you sure that you want to do it? It will generate %g permutations" % factorial(len(string)))
 		ans = input("Enter Y to proceed:")
 		if ans != "Y":
 			return []
@@ -86,7 +86,7 @@ def genratePass(lenPass):
 			idGroup =  randint(idMAYS, idSYMB)
 			if idGroup == idMAYS:
 				newPass = newPass + getSet(MAYS)
-				maysCount +=1
+				maysCount += 1
 				hasMAYS = True
 			elif idGroup == idMINS:
 				newPass = newPass + getSet(MINS)
@@ -141,4 +141,4 @@ if __name__ == "__main__":
 	print("> > > > > > This is your new password: " + newPass)
 	print("> > > > > > This is your new password: " + ''.join(sample(newPass,len(newPass))))
 
-	#printPermuteList(newPass)
+	# --- printPermuteList(newPass)
