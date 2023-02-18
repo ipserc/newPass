@@ -167,7 +167,11 @@ if __name__ == "__main__":
 		if (iteration > 500):
 			break
 	
-	print("Password generated in " + str(iteration) + " iterations")
+	if (iteration > 1):
+		s = "s"
+	else:
+		s = ""
+	print("Password generated in " + str(iteration) + " iteration" + s)
 	print("> > > > > > This is your 1st new password: " + newPass)
 	print("> > > > > > This is your 2nd new password: " + shuffle(newPass))
 
