@@ -1,6 +1,6 @@
 #!/bin/python3
 '''
-    @author:     Jose Luis Núñez
+    @author:     Jose Luis N C
     
     @copyright:  Creative Commons CC BY-NC-SA ipserc 2023
     
