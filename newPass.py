@@ -38,7 +38,7 @@ MAXITER = 500
 # The sets of characters
 MAYS = "QWERTYUIOPASDFGHJKLZXCVBNM"
 MINS = "mnbvcxzpoiuytrewqlkjhgfdsa"
-SYMB = "@!#€$%&/(){}=+-*[]·"
+SYMB = "@!#$%&/(){}=+-_|*[];:<,.>?"
 NMBR = "1357902468"
 
 # The Ids of the sets of characters
