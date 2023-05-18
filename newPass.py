@@ -25,9 +25,9 @@ from os.path import basename
 
 # Program Facts
 PROGRAM = basename(__file__)
-VERSION = "1.0.0 (2023_0218_2359)"
+VERSION = "1.0.1 (2023_0518_1853)"
 UPDATED = "2023/02/18"
-CREATED = "2023/02/18"
+CREATED = "2023/05/18"
 AUTHOR = "ipserc"
 LICENSE = "GNU General Public License v3.0"
 EMAIL = "jlncpub@selenitas.es"
@@ -71,6 +71,15 @@ def progamFacts():
 			"LICENSE..: " + LICENSE + "\n" + \
 			"EMAIL....: " + EMAIL + "\n")
 
+def passwdFacts():
+	print('-------------------------------------')
+	print('	PASSWORD FACTS')
+	print(	'	Length...........:' + str(lenPass) + "\n" + \
+			'	UpCase (At least):' + str(maysRuleCount) + "\n" + \
+			'	LoCase (At least):' + str(minsRuleCount) + "\n" + \
+			'	Number (At least):' + str(nmbrRuleCount) + "\n" + \
+			'	Symbol (Exact)...:' + str(symbRuleCount) )
+	print('-------------------------------------\n')
 
 def shuffle(string):
 	return ''.join(sample(string,len(string)))
@@ -191,7 +200,9 @@ if __name__ == "__main__":
 	maysRuleCount = 3
 	minsRuleCount = 3
 	nmbrRuleCount = 3
-	symbRuleCount = 2
+	symbRuleCount = 3
+	
+	passwdFacts()
 	
 	# Shuffle the sets of characters
 	MAYS = shuffle(MAYS)
